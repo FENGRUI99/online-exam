@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/online_exam?useSSL=false
+      username: root
+      password: fengyan1
+      initial-size: 5
+      min-idle: 5
+      max-active: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+
+#mapper.xml配置
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

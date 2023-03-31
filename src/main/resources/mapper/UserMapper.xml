@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengrui.dao.UserDao">
+    <insert id="register" >
+        insert into user (username, password, real_name, class_id)
+        values(#{username}, #{password}, #{realName}, #{classId});
+    </insert>
+    <select id="login" resultType="com.fengrui.pojo.User">
+        select * from online_exam.user where username = #{username} and password = #{password};
+    </select>
+    <select id="getByName" resultType="com.fengrui.pojo.User">
+        select * from user where username = #{name};
+    </select>
+
+</mapper>

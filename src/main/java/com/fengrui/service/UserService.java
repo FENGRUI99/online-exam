@@ -1,0 +1,11 @@
+package com.fengrui.service;
+
+import com.fengrui.pojo.User;
+
+import java.util.List;
+
+public interface UserService {
+    User login(String username, String password);
+    Integer register(User user);
+    List<User> getByName(String name);
+}
