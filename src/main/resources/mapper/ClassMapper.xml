@@ -10,4 +10,7 @@
     <select id="getAll" resultMap="classResultMap">
         select id, class_name from class;
     </select>
+    <select id="getClassById" resultMap="classResultMap">
+        select id, class_name from class where id=#{id};
+    </select>
 </mapper>

@@ -27,4 +27,29 @@ public class UserServiceImpl implements UserService {
     public List<User> getByName(String name) {
         return userDao.getByName(name);
     }
+
+    @Override
+    public List<User> pageByClassId(Integer classId) {
+        return userDao.pageByClassId(classId);
+    }
+
+    @Override
+    public User getById(Integer id) {
+        return userDao.getById(id);
+    }
+
+    @Override
+    public Integer update(User user) {
+        return userDao.update(user);
+    }
+
+    @Override
+    public Integer delete(Integer id) {
+        return userDao.delete(id);
+    }
+
+    @Override
+    public Integer deleteAll(Integer classId) {
+        return userDao.deleteAll(classId);
+    }
 }

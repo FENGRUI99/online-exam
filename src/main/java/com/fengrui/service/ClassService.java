@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ClassService {
     List<Class> getAll();
+    Class getClassById(Integer id);
 }

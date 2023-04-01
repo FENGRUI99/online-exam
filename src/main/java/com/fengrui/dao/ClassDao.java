@@ -8,4 +8,6 @@ import java.util.List;
 @Mapper
 public interface ClassDao {
     List<Class> getAll();
+
+    Class getClassById(Integer id);
 }

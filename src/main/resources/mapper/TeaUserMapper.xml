@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengrui.dao.TeaUserDao">
+    <resultMap id="teaResultMap" type="com.fengrui.pojo.TeaUser">
+        <result column="real_name" property="realName" />
+        <result column="class_id" property="classId" />
+    </resultMap>
+
+    <select id="login" resultMap="teaResultMap">
+        select * from tea_user where username=#{username} and password=#{password};
+    </select>
+    <select id="getRealName" resultType="java.lang.String">
+        select real_name from tea_user where username=#{username};
+    </select>
+</mapper>

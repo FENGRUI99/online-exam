@@ -52,7 +52,7 @@
             <h3 ><font color="red">注意!!!!    删除用户会删除有关用户的所有数据,请谨慎删除</font></h3>
             <th colspan="7"><button class="line btn btn-primary btn-sm" type="button" onclick="add()">添加学生</button>
             &nbsp;&nbsp;&nbsp; <button class="line btn btn-primary btn-sm" id="deleteAll" onclick="deleteAll()" >删除所有数据</button>
-                &nbsp;&nbsp;&nbsp;我的班级：  <span th:text="${pj.classname}"></span></th>
+                &nbsp;&nbsp;&nbsp;我的班级：  <span th:text="${pj.className}"></span></th>
         </tr>
         <tr>
             <td ><input type="checkbox" id="allAndNotAll" />全选/反选</td>
@@ -65,16 +65,16 @@
         </thead>
         <tbody>
         <tr th:each="stulist: ${liss}">
-            <td><input type="checkbox" name="items" th:id="${stulist.userid}"/></td>
-            <td th:text="${stulist.userid}"></td>
+            <td><input type="checkbox" name="items" th:id="${stulist.id}"/></td>
+            <td th:text="${stulist.id}"></td>
             <td th:text="${stulist.username}"></td>
-            <td th:text="${stulist.userpwd}"></td>
-            <td th:text="${stulist.truename}"></td>
+            <td th:text="${stulist.password}"></td>
+            <td th:text="${stulist.realName}"></td>
             <td>
-                <a th:onclick="'javascript:edit(\''+${stulist.userid}+'\');'" style="text-decoration: none;">
+                <a th:onclick="'javascript:edit(\''+${stulist.id}+'\');'" style="text-decoration: none;">
                     <button class="btn btn-default" style="width: 50px;height: 30px;background: #3e8f3e">修改</button>
                 </a>
-                <a th:href="@{'./DeleteStu?userid='+${stulist.userid}}">
+                <a th:href="@{'./deleteStu?userid='+${stulist.id}}">
                     <button class="btn btn-default" style="width: 50px;height: 30px;background: red">
                         删除
                     </button>
@@ -139,7 +139,7 @@
                         <label class="col-sm-2 control-label">班级</label>
                         <div class="col-sm-5">
                         <select name="classid" >
-                        <option name="classid" th:each="pjclass : ${list}" th:value="${pjclass.classid}" th:text="${pjclass.classname}"></option>
+                        <option name="classid" th:each="pjclass : ${list}" th:value="${pjclass.id}" th:text="${pjclass.className}"></option>
                         </select>
                         </div>
                 </div>
@@ -166,7 +166,7 @@
             </div>
             <form class="form-horizontal" th:action="@{/updateStu}" method="post">
                 <div class="modal-body">
-                    <input name="userid" id="userid1" hidden="hidden"/>
+                    <input name="id" id="userid1" style="display: none;"/>
                     <div class="form-group">
                     <label class="col-sm-2 control-label">学号</label>
                     <div class="col-sm-10">
@@ -177,7 +177,7 @@
                     <div class="form-group ">
                     <label class="col-sm-2 control-label">姓名</label>
                     <div class="col-sm-10">
-                    <input type="text" name="truename" class="form-control" id="truename1"
+                    <input type="text" name="realName" class="form-control" id="truename1"
                     placeholder="">
                     <span class="help-block"></span>
                     </div>
@@ -185,7 +185,7 @@
                     <div class="form-group ">
                     <label class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
-                    <input type="text" name="userpwd" class="form-control" id="userpwd1"
+                    <input type="text" name="password" class="form-control" id="userpwd1"
                     placeholder="">
                     <span class="help-block"></span>
                     </div>
@@ -199,7 +199,7 @@
                     <div class="form-group">
                     <label class="col-sm-2 control-label">班级</label>
                     <div class="col-sm-5">
-                    <select class="form-control" id="classid1" name="classid">
+                    <select class="form-control" id="classid1" name="classId">
                     </select>
                     </div>
                     </div>
@@ -234,7 +234,7 @@
             type: 'POST',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#classid1").append("<option value='" + data[i].classid + "'>" + data[i].classname + "</option>");
+                    $("#classid1").append("<option value='" + data[i].id + "'>" + data[i].className + "</option>");
                 }
             }
         });
@@ -248,15 +248,15 @@
                 dataType: 'json',
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify({
-                   userid: userid
+                   id: userid
                 }),
                 success: function (data) {
                     console.log("老师" + data);
-                     $("#userid1").val(data.userid);
+                     $("#userid1").val(data.id);
                     $("#username1").val(data.username);
-                    $("#truename1").val(data.truename);
-                    $("#userpwd1").val(data.userpwd);
-                    $("#classid1").val(data.classid);
+                    $("#truename1").val(data.realName);
+                    $("#userpwd1").val(data.password);
+                    $("#classid1").val(data.classId);
                     $("#studit").modal('show');
                 },
                 error: function () {
