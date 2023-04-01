@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengrui.dao.CourseDao">
+    <resultMap id="courseResultMap" type="com.fengrui.pojo.Course">
+        <result column="course_name" property="courseName" />
+    </resultMap>
+    <select id="getById" resultType="com.fengrui.pojo.Course">
+        select * from course where id=#{id};
+    </select>
+    <select id="getAllCourse" resultMap="courseResultMap">
+        select * from course;
+    </select>
+</mapper>

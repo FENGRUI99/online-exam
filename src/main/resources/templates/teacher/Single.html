@@ -59,20 +59,20 @@
         </thead>
         <tbody>
         <tr th:each="sublist: ${subjectlist}">
-            <td><input type="checkbox" name="items" th:id="${sublist.sid}"/></td>
-            <td th:text="${sublist.sid}"></td>
-            <td th:text="${sublist.course.cname}"></td>
-            <td th:text="${sublist.scontent}"></td>
-            <td th:text="${sublist.sa}"></td>
-            <td th:text="${sublist.sb}"></td>
-            <td th:text="${sublist.sc}"></td>
-            <td th:text="${sublist.sd}"></td>
-            <td th:text="${sublist.skey}"></td>
+            <td><input type="checkbox" name="items" th:id="${sublist.id}"/></td>
+            <td th:text="${sublist.id}"></td>
+            <td th:text="${sublist.course.courseName}"></td>
+            <td th:text="${sublist.questionContent}"></td>
+            <td th:text="${sublist.optionA}"></td>
+            <td th:text="${sublist.optionB}"></td>
+            <td th:text="${sublist.optionC}"></td>
+            <td th:text="${sublist.optionD}"></td>
+            <td th:text="${sublist.answer}"></td>
             <td>
-                <a th:onclick="'javascript:edit(\''+${sublist.sid}+'\');'" style="text-decoration: none;">
+                <a th:onclick="'javascript:edit(\''+${sublist.id}+'\');'" style="text-decoration: none;">
                     <button class="btn btn-default" style="width: 50px;height: 30px;background: #3e8f3e">修改</button>
                 </a>
-                <a th:onclick="'javascript:trash(\''+${sublist.sid}+'\');'" style="text-decoration: none;"
+                <a th:onclick="'javascript:trash(\''+${sublist.id}+'\');'" style="text-decoration: none;"
                    data-toggle="modal" data-target="#trashModal">
                     <button class="btn btn-default" style="width: 50px;height: 30px;background: red">
                         删除
@@ -113,28 +113,28 @@
                     <input name="stype" value="1" hidden="hidden"/>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">题目：</span>
-                        <textarea class="form-control" rows="3" name="scontent" id="scontent"></textarea>
+                        <textarea class="form-control" rows="3" name="questionContent" id="scontent"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">A:</span>
-                        <textarea class="form-control" rows="3" name="sa" id="sa"></textarea>
+                        <textarea class="form-control" rows="3" name="optionA" id="sa"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">B:</span>
-                        <textarea class="form-control" rows="3" name="sb" id="sb"></textarea>
+                        <textarea class="form-control" rows="3" name="optionB" id="sb"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">C:</span>
-                        <textarea class="form-control" rows="3" name="sc" id="sc"></textarea>
+                        <textarea class="form-control" rows="3" name="optionC" id="sc"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">D:</span>
-                        <textarea class="form-control" rows="3" name="sd" id="sd"></textarea>
+                        <textarea class="form-control" rows="3" name="optionD" id="sd"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">答案：</span>
                         <div class="col-sm-5">
-                            <select class="form-control" id="skey" name="skey">
+                            <select class="form-control" id="answer" name="answer">
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -145,7 +145,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">所属课程</label>
                         <div class="col-sm-5">
-                            <select class="form-control" id="cno" name="cno">
+                            <select class="form-control" id="cno" name="courseId">
                             </select>
                         </div>
                     </div>
@@ -171,32 +171,32 @@
             </div>
             <form class="form-horizontal" th:action="@{/updateSingle}" method="post">
                 <div class="modal-body">
-                    <input name="sid" id="sid1" hidden="hidden"/>
+                    <input name="id" id="sid1" hidden="hidden"/>
                     <input name="stype" id="stype1" hidden="hidden"/>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">题目：</span>
-                        <textarea class="form-control" rows="3" name="scontent" id="scontent1"></textarea>
+                        <textarea class="form-control" rows="3" name="questionContent" id="scontent1"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">A:</span>
-                        <textarea class="form-control" rows="3" name="sa" id="sa1"></textarea>
+                        <textarea class="form-control" rows="3" name="optionA" id="sa1"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">B:</span>
-                        <textarea class="form-control" rows="3" name="sb" id="sb1"></textarea>
+                        <textarea class="form-control" rows="3" name="optionB" id="sb1"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">C:</span>
-                        <textarea class="form-control" rows="3" name="sc" id="sc1"></textarea>
+                        <textarea class="form-control" rows="3" name="optionC" id="sc1"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">D:</span>
-                        <textarea class="form-control" rows="3" name="sd" id="sd1"></textarea>
+                        <textarea class="form-control" rows="3" name="optionD" id="sd1"></textarea>
                     </div>
                     <div class="form-group input-group">
                         <span class="input-group-addon" style="height: 40px ; tab-size: 16px ">答案：</span>
                         <div class="col-sm-5">
-                            <select class="form-control" id="skey1" name="skey">
+                            <select class="form-control" id="skey1" name="answer">
                                 <option value="A">A</option>
                                 <option value="B">B</option>
                                 <option value="C">C</option>
@@ -207,7 +207,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">所属课程</label>
                         <div class="col-sm-5">
-                            <select class="form-control" id="cno1" name="cno">
+                            <select class="form-control" id="cno1" name="courseId">
                             </select>
                         </div>
                     </div>
@@ -267,23 +267,23 @@
             type: 'get',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#cno").append("<option value='" + data[i].cno+ "'>" + data[i].cname + "</option>");
+                    $("#cno").append("<option value='" + data[i].id+ "'>" + data[i].courseName + "</option>");
                 }
             }
         });
     }
     // 编辑信息的方法
-    function edit(sid) {
+    function edit(id) {
         $.ajax({
             url: '/findAllCourse',
             type: 'get',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#cno1").append("<option value='" + data[i].cno + "'>" + data[i].cname + "</option>");
+                    $("#cno1").append("<option value='" + data[i].id + "'>" + data[i].courseName + "</option>");
                 }
             }
         });
-        if (!sid) {
+        if (!id) {
             alert("error");
         } else {
             // 先去查询数据
@@ -293,17 +293,17 @@
                 dataType: 'json',
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify({
-                    sid: sid
+                    id: id
                 }),
                 success: function (data) {
-                    $("#sid1").val(data.sid);
-                    $("#scontent1").val(data.scontent);
-                    $("#sa1").val(data.sa);
-                    $("#sb1").val(data.sb);
-                    $("#sc1").val(data.sc);
-                    $("#sd1").val(data.sd);
-                    $("#skey1").val(data.skey);
-                    $("#cno1").val(data.cno);
+                    $("#sid1").val(data.id);
+                    $("#scontent1").val(data.questionContent);
+                    $("#sa1").val(data.optionA);
+                    $("#sb1").val(data.optionB);
+                    $("#sc1").val(data.optionC);
+                    $("#sd1").val(data.optionD);
+                    $("#skey1").val(data.answer);
+                    $("#cno1").val(data.courseId);
                     $("#editch").modal('show');
                 },
                 error: function () {
@@ -319,7 +319,7 @@
         } else {
             $(".delSure").click(function () {
                 $.ajax({
-                    url: '/deleteSingle?sid=' + sid,
+                    url: '/deleteSingle?id=' + sid,
                     type: 'POST',
                     success: function (data) {
                         $("body").html(data);
