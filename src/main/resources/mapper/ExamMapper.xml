@@ -20,8 +20,21 @@
         insert into exam(exam_name, course_id, tea_user_id, class_id, question_number, single_score, start_time, end_time, during)
         value(#{examName}, #{courseId}, #{teaUserId}, #{classId}, #{questionNumber}, #{singleScore}, #{startTime}, #{endTime}, #{during});
     </insert>
+    <update id="updateExam">
+        update exam set exam_name=#{examName}, course_id=#{courseId},
+                        tea_user_id=#{teaUserId}, class_id=#{classId},
+                        question_number=#{questionNumber}, single_score=#{singleScore},
+                        start_time=#{startTime}, end_time=#{endTime},
+                        during=#{during} where id=#{id};
+    </update>
+    <delete id="deleteExam">
+        delete from exam where id=#{id};
+    </delete>
     <select id="getById" resultMap="examResultMap">
         select * from exam where id=#{id};
+    </select>
+    <select id="getAll" resultMap="examResultMap">
+        select * from exam;
     </select>
 
 

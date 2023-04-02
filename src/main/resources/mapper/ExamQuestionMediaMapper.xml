@@ -17,4 +17,10 @@
         insert into exam_question_media(exam_id, question_id, course_id, question_content, option_a, option_b, option_c, option_d, answer)
         value(#{examId}, #{questionId}, #{courseId}, #{questionContent}, #{optionA}, #{optionB}, #{optionC}, #{optionD}, #{answer});
     </insert>
+    <delete id="deleteById">
+        delete from exam_question_media where exam_id=#{examId};
+    </delete>
+    <select id="getByExamId" resultMap="resultMap">
+        select * from exam_question_media where exam_id=#{examId};
+    </select>
 </mapper>

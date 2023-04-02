@@ -162,6 +162,16 @@ public class TeaUserController {
         return "redirect:/finddanxuan";
     }
 
+    @GetMapping("/selectexam")
+    public String selectExam(@RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum,Model model){
+        PageHelper.startPage(pageNum,5);
+        List<Exam> allExam = examService.getAll();
+        PageInfo<Exam> examPageInfo = new PageInfo<>(allExam);
+        model.addAttribute("examlist",allExam);
+        model.addAttribute("pageInfo",examPageInfo);
+        return "teacher/SelectExam";
+    }
+
     @GetMapping("/addexam")
     public String toAddExam(){
         return "teacher/addexam";
@@ -173,5 +183,39 @@ public class TeaUserController {
         examService.addExam(exam);
         examQuestionMediaService.addExamQuestion(exam.getId(), exam.getCourseId(), exam.getQuestionNumber());
         return "teacher/addexam";
+    }
+    @ResponseBody
+    @GetMapping("/findAllClasses")
+    public List<Class> getAllClasses(){
+        return classService.getAll();
+    }
+    @ResponseBody
+    @PostMapping("/findByOneExam")
+    public Exam findExamById(@RequestBody Exam exam){
+        return examService.getById(exam.getId());
+    }
+
+    @GetMapping("/deleteExam")
+    public String deleteExam(Integer id){
+        examQuestionMediaService.deleteById(id);
+        examService.deleteExam(id);
+        return "redirect:/selectexam";
+    }
+    @PostMapping("/updateExam")
+    public String updateExam(Exam exam){
+        examQuestionMediaService.updateExamQuestion(exam.getId(), exam.getCourseId(), exam.getQuestionNumber());
+        examService.updateExam(exam);
+        return "redirect:/selectexam";
+    }
+
+    @GetMapping("/paperDetails")
+    public  String paperDetails(Integer id,Model model){
+        Integer examId = id;
+        List<ExamQuestionMedia> examQuestions = examQuestionMediaService.getByExamId(examId);
+        model.addAttribute("tm",examQuestions);
+        Exam exam = examService.getById(examId);
+        System.out.println(exam.toString());
+        model.addAttribute("exam",exam);
+        return "teacher/paperDetails";
     }
 }

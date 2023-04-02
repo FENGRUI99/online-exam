@@ -11,7 +11,7 @@
     <table class="table table-striped"  >
         <thead>
         <tr>
-            <h3><strong th:text="${exam.pname}+'详情'"></strong></h3>
+            <h3><strong th:text="${exam.examName}+'详情'"></strong></h3>
         </tr>
         <tr>
             <th>编号</th>
@@ -25,13 +25,13 @@
         </thead>
         <tbody>
         <tr th:each="tm: ${tm}">
-            <td th:text="${tm.pid}"></td>
-            <td th:text="${tm.scontent}"></td>
-            <td th:text="${tm.sa}"></td>
-            <td th:text="${tm.sb}"></td>
-            <td th:text="${tm.sc}"></td>
-            <td th:text="${tm.sd}"></td>
-            <td th:text="${tm.skey}"></td>
+            <td th:text="${tm.id}"></td>
+            <td th:text="${tm.questionContent}"></td>
+            <td th:text="${tm.optionA}"></td>
+            <td th:text="${tm.optionB}"></td>
+            <td th:text="${tm.optionC}"></td>
+            <td th:text="${tm.optionD}"></td>
+            <td th:text="${tm.answer}"></td>
         </tr>
         </tbody>
     </table>

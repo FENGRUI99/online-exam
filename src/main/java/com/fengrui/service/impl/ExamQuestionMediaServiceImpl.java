@@ -35,4 +35,21 @@ public class ExamQuestionMediaServiceImpl implements ExamQuestionMediaService {
         }
         return Math.min(questions.size(), questionNumber);
     }
+
+    @Override
+    public Integer deleteById(Integer examId) {
+        return examQuestionMediaDao.deleteById(examId);
+    }
+
+    @Override
+    public Integer updateExamQuestion(Integer examId, Integer courseId, Integer questionNumber) {
+        examQuestionMediaDao.deleteById(examId);
+        return addExamQuestion(examId, courseId, questionNumber);
+    }
+
+    @Override
+    public List<ExamQuestionMedia> getByExamId(Integer examId) {
+        return examQuestionMediaDao.getByExamId(examId);
+    }
 }
+

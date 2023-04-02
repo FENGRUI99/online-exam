@@ -63,22 +63,22 @@
         </thead>
         <tbody>
         <tr th:each="examlist: ${examlist}">
-            <td><input type="checkbox" name="items" th:id="${examlist.eid}"/></td>
-            <td th:text="${examlist.eid}"></td>
-            <td th:text="${examlist.pname}"></td>
-            <td th:text="${examlist.singlenumber}"></td>
-            <td th:text="${examlist.singlecore}*${examlist.singlenumber}"></td>
-            <td th:text="${examlist.examdate}+'至'+${examlist.examtime}"></td>
-            <td th:text="${examlist.testtime}+'分钟'"></td>
+            <td><input type="checkbox" name="items" th:id="${examlist.id}"/></td>
+            <td th:text="${examlist.id}"></td>
+            <td th:text="${examlist.examName}"></td>
+            <td th:text="${examlist.questionNumber}"></td>
+            <td th:text="${examlist.singleScore}*${examlist.singleScore}"></td>
+            <td th:text="${examlist.startTime}+'至'+${examlist.endTime}"></td>
+            <td th:text="${examlist.during}+'分钟'"></td>
             <td>
-                <a th:onclick="'javascript:edit(\''+${examlist.eid}+'\');'" style="text-decoration: none;">
+                <a th:onclick="'javascript:edit(\''+${examlist.id}+'\');'" style="text-decoration: none;">
                     <button class="btn btn-default" style="width: 50px;height: 30px;background: #3e8f3e">修改</button>
                 </a>
-                <a th:onclick="'javascript:trash(\''+${examlist.eid}+'\');'" style="text-decoration: none;"
+                <a th:onclick="'javascript:trash(\''+${examlist.id}+'\');'" style="text-decoration: none;"
                    data-toggle="modal" data-target="#trashModal">
                     <button class="btn btn-default" style="width: 50px;height: 30px;background: red">删除</button>
                 </a>
-                <a  style="text-decoration: none;" th:href="@{'./paperDetails?eid='+${examlist.eid}}">
+                <a  style="text-decoration: none;" th:href="@{'./paperDetails?id='+${examlist.id}}">
                     <button class="btn btn-default" style="width: 80px;height: 30px;background: deepskyblue">
                        考卷详情
                     </button>
@@ -116,25 +116,25 @@
             </div>
             <form class="form-horizontal" th:action="@{/updateExam}" method="post">
                 <div class="modal-body">
-                    <input name="eid" id="eid" hidden="hidden"/>
+                    <input name="id" id="eid" hidden="hidden"/>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">试卷名称</label>
                         <div class="col-sm-10">
-                            <input type="text" name="pname" class="form-control" id="pname">
+                            <input type="text" name="examName" class="form-control" id="pname">
                             <span class="help-block"></span>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">所属课程</label>
                         <div class="col-sm-5">
-                            <select class="form-control" id="cno" name="cno">
+                            <select class="form-control" id="cno" name="courseId">
                             </select>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">命题人</label>
                         <div class="col-sm-10">
-                            <input type="text" name="userid" class="form-control" id="userid"
+                            <input type="text" name="teaUserId" class="form-control" id="userid"
                                    placeholder="">
                             <span class="help-block"></span>
                         </div>
@@ -142,14 +142,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">所属班级</label>
                         <div class="col-sm-5">
-                            <select class="form-control" id="classid" name="classid">
+                            <select class="form-control" id="classid" name="classId">
                             </select>
                         </div>
                     </div>
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">单选题数量</label>
                         <div class="col-sm-10">
-                            <input type="text" name="singlenumber" class="form-control" id="singlenumber"
+                            <input type="text" name="questionNumber" class="form-control" id="singlenumber"
                                    placeholder="">
                             <span class="help-block"></span>
                         </div>
@@ -157,7 +157,7 @@
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">单选题每题分值</label>
                         <div class="col-sm-10">
-                            <input type="text" name="singlecore" class="form-control" id="singlecore"
+                            <input type="text" name="singleScore" class="form-control" id="singlecore"
                                    placeholder="">
                             <span class="help-block"></span>
                         </div>
@@ -166,7 +166,7 @@
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">开始时间</label>
                         <div class="col-sm-10">
-                            <input type="date" name="examdate" class="form-control" id="examdate"
+                            <input type="date" name="startTime" class="form-control" id="examdate"
                                    placeholder="">
                             <span class="help-block"></span>
                         </div>
@@ -174,7 +174,7 @@
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">结束时间</label>
                         <div class="col-sm-10">
-                            <input type="date" name="examtime" class="form-control" id="examtime"
+                            <input type="date" name="endTime" class="form-control" id="examtime"
                                    placeholder="">
                             <span class="help-block"></span>
                         </div>
@@ -182,7 +182,7 @@
                     <div class="form-group ">
                         <label class="col-sm-2 control-label">考试时间（分钟）</label>
                         <div class="col-sm-10">
-                            <input type="text" name="testtime" class="form-control" id="testtime"
+                            <input type="text" name="during" class="form-control" id="testtime"
                                    placeholder="">
                             <span class="help-block"></span>
                         </div>
@@ -225,7 +225,7 @@
             alert("error");
         } else {
             $(".delSure").click(function () {
-                window.location.href="/deleteExam?eid="+eid;
+                window.location.href="/deleteExam?id="+eid;
             });
         }
     }
@@ -236,7 +236,7 @@
             type: 'get',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#cno").append("<option value='" + data[i].cno + "'>" + data[i].cname + "</option>");
+                    $("#cno").append("<option value='" + data[i].id + "'>" + data[i].courseName + "</option>");
                 }
             }
         });
@@ -245,7 +245,7 @@
             type: 'get',
             success: function (data) {
                 for (var i = 0; i < data.length; i++) {
-                    $("#classid").append("<option value='" + data[i].classid + "'>" + data[i].classname + "</option>");
+                    $("#classid").append("<option value='" + data[i].id + "'>" + data[i].className + "</option>");
                 }
             }
         });
@@ -259,19 +259,19 @@
                 dataType: 'json',
                 contentType: 'application/json;charset=UTF-8',
                 data: JSON.stringify({
-                    eid: eid
+                    id: eid
                 }),
                 success: function (data) {
-                    $("#eid").val(data.eid);
-                    $("#pname").val(data.pname)
-                    $("#cno").val(data.cno);
-                    $("#userid").val(data.userid);
-                    $("#classid").val(data.classid);
-                    $("#singlenumber").val(data.singlenumber);
-                    $("#singlecore").val(data.singlecore);
-                    $('#examdate').val(data.examdate);
-                    $('#examtime').val(data.examtime);
-                    $('#testtime').val(data.testtime);
+                    $("#eid").val(data.id);
+                    $("#pname").val(data.examName)
+                    $("#cno").val(data.courseId);
+                    $("#userid").val(data.teaUserId);
+                    $("#classid").val(data.classId);
+                    $("#singlenumber").val(data.questionNumber);
+                    $("#singlecore").val(data.singleScore);
+                    $('#examdate').val(data.startTime);
+                    $('#examtime').val(data.endTime);
+                    $('#testtime').val(data.during);
                     $("#examdit").modal('show');
                 },
                 error: function () {
