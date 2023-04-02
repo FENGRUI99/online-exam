@@ -11,13 +11,22 @@ spring:
       max-active: 60000
       time-between-eviction-runs-millis: 60000
       min-evictable-idle-time-millis: 300000
+  #时间配置
+  jackson:
+    date-format: yyyy-MM-dd
+    time-zone: GMT+8
+  mvc:
+    format:
+      date: yyyy-MM-dd
+      date-time: yyyy-MM-dd
 
 #mapper.xml配置
 mybatis:
   mapper-locations: classpath:mapper/*.xml
+
+#分页配置
 pagehelper:
   helper-dialect: mysql
   reasonable: true
   support-methods-arguments: true
   params: count=countSql
-#分页配置

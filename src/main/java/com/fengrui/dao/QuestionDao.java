@@ -12,5 +12,5 @@ public interface QuestionDao {
     Question findById(Integer id);
     Integer updateQuestion(Question question);
     Integer deleteQuestion(Integer id);
-
+    List<Question> findByCourseId(Integer courseId);
 }

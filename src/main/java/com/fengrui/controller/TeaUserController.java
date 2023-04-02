@@ -1,11 +1,9 @@
 package com.fengrui.controller;
 
 import com.fengrui.dao.QuestionDao;
-import com.fengrui.pojo.Course;
-import com.fengrui.pojo.Question;
-import com.fengrui.pojo.User;
-import com.fengrui.service.*;
+import com.fengrui.pojo.*;
 import com.fengrui.pojo.Class;
+import com.fengrui.service.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,10 @@ public class TeaUserController {
     QuestionService questionService;
     @Autowired
     CourseService courseService;
+    @Autowired
+    ExamService examService;
+    @Autowired
+    ExamQuestionMediaService examQuestionMediaService;
     //查询所有学生信息
     @GetMapping("/StudentList")
     public String findUsers(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
@@ -167,7 +169,9 @@ public class TeaUserController {
 
     //创建考试
     @PostMapping("/addexams")
-    public String addExam(){
-        return "";
+    public String addExam(Exam exam){
+        examService.addExam(exam);
+        examQuestionMediaService.addExamQuestion(exam.getId(), exam.getCourseId(), exam.getQuestionNumber());
+        return "teacher/addexam";
     }
 }

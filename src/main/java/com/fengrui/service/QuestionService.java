@@ -10,4 +10,5 @@ public interface QuestionService {
      Question findById(Integer id);
      Integer updateQuestion(Question question);
      Integer deleteQuestion(Integer id);
+     List<Question> findByCourseId(Integer courseId);
 }

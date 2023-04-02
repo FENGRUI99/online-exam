@@ -32,4 +32,7 @@
     <select id="findById" resultMap="questionResultMap">
         select * from question where id=#{id};
     </select>
+    <select id="findByCourseId" resultMap="questionResultMap">
+        select * from question where course_id=#{courseId};
+    </select>
 </mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengrui.dao.ExamDao">
+    <resultMap id="examResultMap" type="com.fengrui.pojo.Exam">
+        <result column="exam_name" property="examName" />
+        <result column="course_id" property="courseId" />
+        <result column="tea_user_id" property="teaUserId" />
+        <result column="class_id" property="classId" />
+        <result column="question_number" property="questionNumber" />
+        <result column="single_score" property="singleScore" />
+        <result column="start_time" property="startTime" />
+        <result column="end_time" property="endTime" />
+    </resultMap>
+    <insert id="addExam" parameterType="com.fengrui.pojo.Exam">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            select LAST_INSERT_ID()
+        </selectKey>
+        insert into exam(exam_name, course_id, tea_user_id, class_id, question_number, single_score, start_time, end_time, during)
+        value(#{examName}, #{courseId}, #{teaUserId}, #{classId}, #{questionNumber}, #{singleScore}, #{startTime}, #{endTime}, #{during});
+    </insert>
+    <select id="getById" resultMap="examResultMap">
+        select * from exam where id=#{id};
+    </select>
+
+
+</mapper>

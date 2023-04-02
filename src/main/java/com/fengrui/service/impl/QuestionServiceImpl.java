@@ -37,4 +37,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Integer deleteQuestion(Integer id) {
         return questionDao.deleteQuestion(id);
     }
+
+    @Override
+    public List<Question> findByCourseId(Integer courseId) {
+        return questionDao.findByCourseId(courseId);
+    }
 }

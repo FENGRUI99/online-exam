@@ -49,6 +49,7 @@ public class LoginController {
             System.out.println("登陆成功");
             servletRequest.getSession().setAttribute("Teatruename",login.getRealName());
             servletRequest.getSession().setAttribute("TeaClassid", login.getClassId());
+            servletRequest.getSession().setAttribute("Teauserid", login.getClassId());
             return "teacher/manage";
         }
     }
