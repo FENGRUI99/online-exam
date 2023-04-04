@@ -13,6 +13,7 @@ public class Exam {
     Date startTime;
     Date endTime;
     Integer during;
+    Course course;
 
     public Integer getId() {
         return id;
@@ -92,6 +93,14 @@ public class Exam {
 
     public void setDuring(Integer during) {
         this.during = during;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     @Override

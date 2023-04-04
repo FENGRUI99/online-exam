@@ -3,6 +3,7 @@ package com.fengrui.controller;
 import com.fengrui.pojo.Class;
 import com.fengrui.pojo.User;
 import com.fengrui.service.ClassService;
+import com.fengrui.service.ExamService;
 import com.fengrui.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ public class StuUserController {
 
     @Autowired
     private ClassService classService;
+    @Autowired
+    private ExamService examService;
 
     @GetMapping("/register")
     public String toRegister(Model model){
@@ -49,6 +52,18 @@ public class StuUserController {
             }
 
         }
+    }
+    @PostMapping("/xiugai")
+    public String updatePassword(User user){
+        userService.updatePassword(user);
+        return "redirect:/toStuLogin";
+    }
 
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest servletRequest){
+        servletRequest.getSession().removeAttribute("truename");
+        servletRequest.getSession().removeAttribute("id");
+        servletRequest.getSession().removeAttribute("password");
+        return "redirect:/toStuLogin";
     }
 }

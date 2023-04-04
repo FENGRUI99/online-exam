@@ -12,4 +12,5 @@ public interface ExamDao {
     List<Exam> getAll();
     Integer deleteExam(Integer id);
     Integer updateExam(Exam exam);
+    List<Exam> getByClassId(Integer classId);
 }

@@ -36,6 +36,9 @@
     <select id="getAll" resultMap="examResultMap">
         select * from exam;
     </select>
+    <select id="getByClassId" resultMap="examResultMap">
+        select * from exam where class_id=#{classId};
+    </select>
 
 
 </mapper>

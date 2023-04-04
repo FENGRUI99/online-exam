@@ -6,7 +6,7 @@
     <resultMap id="courseResultMap" type="com.fengrui.pojo.Course">
         <result column="course_name" property="courseName" />
     </resultMap>
-    <select id="getById" resultType="com.fengrui.pojo.Course">
+    <select id="getById" resultMap="courseResultMap">
         select * from course where id=#{id};
     </select>
     <select id="getAllCourse" resultMap="courseResultMap">

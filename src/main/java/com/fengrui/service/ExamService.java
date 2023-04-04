@@ -10,4 +10,5 @@ public interface ExamService {
     public List<Exam> getAll();
     public Integer deleteExam(Integer id);
     public Integer updateExam(Exam exam);
+    public List<Exam> getByClassId(Integer classId);
 }

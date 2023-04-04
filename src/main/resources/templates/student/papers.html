@@ -9,7 +9,7 @@
 <div th:replace="include/PaperNav :: PaperNav"></div>
 <script th:inline="javascript">
     var single = [[${exam}]];
-    var testtime = single.testtime;
+    var testtime = single.during;
 
 
 
@@ -56,34 +56,34 @@
 <main class="container">
     <div class="panel panel-default">
         <div class="panel-heading text-center">
-            <h3 class="panel-title" th:text="${exam.getPname()}"></h3>
+            <h3 class="panel-title" th:text="${exam.examName}"></h3>
         </div>
         <div class="panel-body">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h4 class="panel-title">
-                        <input type="hidden" th:value="${exam.testtime}" id="testtime">
-                        <p data-toggle="collapse" data-parent="#accordion">一，单选题（共 <span th:text="${cont}"></span> 题，每题<span id="" th:text="${exam.singlecore}"></span>分）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考试时间：<strong><span th:text="${exam.testtime}"></span>分钟</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="hidden" th:value="${exam.during}" id="testtime">
+                        <p data-toggle="collapse" data-parent="#accordion">一，单选题（共 <span th:text="${cont}"></span> 题，每题<span id="" th:text="${exam.singleScore}"></span>分）&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;考试时间：<strong><span th:text="${exam.during}"></span>分钟</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             计时：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="useTime" style="font-weight: bold;"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             剩余时间：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font id="remainTime" style="font-weight: bold;color: red"></font></p>
                     </h4>
                 </div>
                 <form th:action="@{/PaperScore}" method="post" role="myForm">
-                <input type="hidden" name="eid" th:value="${exam.eid}">
-                <input type="hidden" name="pname" th:value="${exam.pname}">
-                    <input type="hidden" name="userid" th:value="${session.lis}">
+                <input type="hidden" name="id" th:value="${exam.id}">
+                <input type="hidden" name="examName" th:value="${exam.examName}">
+                    <input type="hidden" name="userId" th:value="${session.id}">
                     <input type="hidden" id="tjtime" name="tjtime" value=""/>
                 <div id="Radio" class="panel-collapse collapse in">
                     <div class="panel-body">
                             <ol type="1">
                                 <div class="subject" th:each="singles:${session.single}">
-                                   <li th:text="${singles.scontent}"></li>
+                                   <li th:text="${singles.questionContent}"></li>
                                      <ol style="list-style:none;">
-                                        <input type="hidden" name="sid" th:value="${singles.sid}">
-                                         <li><label><input type="radio" value="A" class="rad" th:name="${singles.sid}" th:text="'A:'+${singles.sa}"></label></li>
-                                         <li><label><input type="radio" value="B" class="rad" th:name="${singles.sid}" th:text="'B:'+${singles.sb}"></label></li>
-                                         <li><label><input type="radio" value="C" class="rad" th:name="${singles.sid}" th:text="'C:'+${singles.sc}"></label></li>
-                                         <li><label><input type="radio" value="D" class="rad" th:name="${singles.sid}" th:text="'D:'+${singles.sd}"></label></li>
+                                        <input type="hidden" name="sid" th:value="${singles.id}">
+                                         <li><label><input type="radio" value="A" class="rad" th:name="${singles.id}" th:text="'A:'+${singles.optionA}"></label></li>
+                                         <li><label><input type="radio" value="B" class="rad" th:name="${singles.id}" th:text="'B:'+${singles.optionB}"></label></li>
+                                         <li><label><input type="radio" value="C" class="rad" th:name="${singles.id}" th:text="'C:'+${singles.optionC}"></label></li>
+                                         <li><label><input type="radio" value="D" class="rad" th:name="${singles.id}" th:text="'D:'+${singles.optionD}"></label></li>
                                      </ol>
                                 </div>
                             </ol>

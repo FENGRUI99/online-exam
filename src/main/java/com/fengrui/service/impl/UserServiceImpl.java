@@ -52,4 +52,14 @@ public class UserServiceImpl implements UserService {
     public Integer deleteAll(Integer classId) {
         return userDao.deleteAll(classId);
     }
+
+    @Override
+    public Integer updatePassword(User user) {
+        return userDao.updatePasswordInteger(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
+    }
 }

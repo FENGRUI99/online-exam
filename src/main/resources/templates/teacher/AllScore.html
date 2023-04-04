@@ -11,7 +11,7 @@
     <table class="table table-striped"  >
         <thead>
         <tr>
-            <th colspan="5" style="text-align:left ;font-size: 20px"><span th:text="${cs.classname}"></span>&nbsp;&nbsp;&nbsp;</th>
+            <th colspan="5" style="text-align:left ;font-size: 20px"><span th:text="${cs.className}"></span>&nbsp;&nbsp;&nbsp;</th>
         </tr>
         <tr>
             <th>学号</th>
@@ -24,12 +24,12 @@
         </thead>
         <tbody>
         <tr th:each="score: ${score}">
-            <td th:text="${score.users.username}"></td>
-            <td th:text="${score.users.truename}"></td>
-            <td th:text="${score.pname}"></td>
-            <td th:text="${score.zscore}"></td>
+            <td th:text="${score.user.username}"></td>
+            <td th:text="${score.user.realName}"></td>
+            <td th:text="${score.examName}"></td>
+            <td th:text="${score.totalScore}"></td>
             <td th:text="${score.score}"></td>
-            <td th:text="${score.tjtime}"></td>
+            <td th:text="${score.time}"></td>
         </tr>
         </tbody>
     </table>

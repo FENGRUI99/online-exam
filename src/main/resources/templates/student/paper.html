@@ -59,7 +59,7 @@
             <div class="test">
                 <form action="" method="post">
                     <div class="test_title">
-                        <span th:text="${exam.pname}"></span>
+                        <span th:text="${exam.examName}"></span>
                         <p class="test_time">
                             <i class="icon iconfont">&#xe6fb;</i><b class="alt-1" >01:40</b>
                         </p>
@@ -70,7 +70,7 @@
                         <div class="test_content_title">
                             <h2>单选题</h2>
                             <p>
-                                <span>共</span><i class="content_lit" th:text="${cont}"></i><span>题，</span><span>合计</span><i class="content_fs" th:text="${cont}*${exam.singlecore}">60</i><span>分</span>
+                                <span>共</span><i class="content_lit" th:text="${cont}"></i><span>题，</span><span>合计</span><i class="content_fs" th:text="${cont}*${exam.singleScore}">60</i><span>分</span>
                             </p>
                         </div>
                     </div>
@@ -78,32 +78,32 @@
                         <ul>
                             <li id="qu_0_0" th:each="singles:${single}">
                                 <div class="test_content_nr_tt">
-                                    <i></i><span th:text="'('+${exam.singlecore}+'分'+')'"></span><font th:text="${singles.scontent}"></font><b class="icon iconfont">&#xe881;</b>
+                                    <i></i><span th:text="'('+${exam.singleScore}+'分'+')'"></span><font th:text="${singles.questionContent}"></font><b class="icon iconfont">&#xe881;</b>
                                 </div>
                                 <div class="test_content_nr_main">
                                     <ul>
                                         <li class="option">
                                             <input type="radio" class="radioOrCheck" name="answer1" id="0_answer_1_option_1" value="A" />
                                             <label for="0_answer_1_option_1">A.
-                                                <p class="ue" style="display: inline;" th:text="${singles.sa}"></p>
+                                                <p class="ue" style="display: inline;" th:text="${singles.optionA}"></p>
                                             </label>
                                         </li>
                                         <li class="option">
                                             <input type="radio" class="radioOrCheck" name="answer1" id="0_answer_1_option_2" value="B"/>
                                             <label for="0_answer_1_option_2">B.
-                                                <p class="ue" style="display: inline;" th:text="${singles.sb}"></p>
+                                                <p class="ue" style="display: inline;" th:text="${singles.optionB}"></p>
                                             </label>
                                         </li>
                                         <li class="option">
                                             <input type="radio" class="radioOrCheck" name="answer1" id="0_answer_1_option_3" value="C"/>
                                             <label for="0_answer_1_option_3">C.
-                                                <p class="ue" style="display: inline;" th:text="${singles.sc}"></p>
+                                                <p class="ue" style="display: inline;" th:text="${singles.optionC}"></p>
                                             </label>
                                         </li>
                                         <li class="option">
                                             <input type="radio" class="radioOrCheck" name="answer1" id="0_answer_1_option_4" value="D"/>
                                             <label for="0_answer_1_option_4">D.
-                                                <p class="ue" style="display: inline;" th:text="${singles.sd}"></p>
+                                                <p class="ue" style="display: inline;" th:text="${singles.optionD}"></p>
                                             </label>
                                         </li>
                                     </ul>

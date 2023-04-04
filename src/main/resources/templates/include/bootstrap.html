@@ -57,15 +57,15 @@
                         <h4 class="modal-title" id="myModalLabel">修改密码</h4>
                     </div>
                     <div class="modal-body">
-                        <input type="hidden" name="userid" th:value="${session.lis}">
-                        <input type="hidden" id="ps" th:value="${session.liss}">
+                        <input type="hidden" name="id" th:value="${session.id}">
+                        <input type="hidden" id="ps" th:value="${session.password}">
                         <div class="form-group form-inline">
                             <label>原密码：</label>
                             <input type="password" name="pass" id="pass" class="form-control" placeholder="请输入旧密码"/>
                         </div>
                         <div class="form-group form-inline">
                             <label>新密码：</label>
-                            <input type="password" name="userpwd" id="password" class="form-control" placeholder="请输入新密码"/>
+                            <input type="password" name="password" id="password" class="form-control" placeholder="请输入新密码"/>
                         </div>
                         <div class="form-group form-inline">
                             <label>重复密码：</label>

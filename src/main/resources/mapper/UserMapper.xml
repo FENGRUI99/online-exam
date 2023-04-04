@@ -13,7 +13,10 @@
         values(#{username}, #{password}, #{realName}, #{classId});
     </insert>
     <update id="update">
-        update user set username = #{username}, password=#{password}, real_name=#{realName}, class_id=#{classId} where id=#{id};
+        update user set username=#{username}, password=#{password}, real_name=#{realName}, class_id=#{classId} where id=#{id};
+    </update>
+    <update id="updatePasswordInteger">
+        update user set password=#{password} where id=#{id};
     </update>
     <delete id="delete">
         delete from user where id=#{id};
@@ -21,10 +24,10 @@
     <delete id="deleteAll">
         delete from user where class_id=#{classId};
     </delete>
-    <select id="login" resultType="com.fengrui.pojo.User">
+    <select id="login" resultMap="userResultMap">
         select * from online_exam.user where username = #{username} and password = #{password};
     </select>
-    <select id="getByName" resultType="com.fengrui.pojo.User">
+    <select id="getByName" resultMap="userResultMap">
         select * from user where username = #{name};
     </select>
     <select id="pageByClassId" resultMap="userResultMap">
@@ -32,6 +35,9 @@
     </select>
     <select id="getById" resultMap="userResultMap">
         select id, username, password, real_name, class_id from user where id=#{id};
+    </select>
+    <select id="getAll" resultMap="userResultMap">
+        select * from user;
     </select>
 
 </mapper>

@@ -15,4 +15,6 @@ public interface UserDao {
     Integer update(User user);
     Integer delete(Integer id);
     Integer deleteAll(Integer classId);
+    Integer updatePasswordInteger(User user);
+    List<User> getAll();
 }

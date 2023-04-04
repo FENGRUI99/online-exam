@@ -18,13 +18,13 @@
                           <div class="thumbnail">
                               <img alt="300x200" src="../img/peitu1.jpg" />
                               <div class="caption">
-                                  <h3 th:text="${exames.pname}"></h3>
-                                  <p>考试科目: <span th:text="${exames.course.cname}"></span> &emsp;&emsp; </p>
-                                  <p>考试时段: <span th:text="${exames.examdate}+'~'+${exames.examtime}"></span></p>
+                                  <h3 th:text="${exames.examName}"></h3>
+                                  <p>考试科目: <span th:text="${exames.course.courseName}"></span> &emsp;&emsp; </p>
+                                  <p>考试时段: <span th:text="${exames.startTime}+'~'+${exames.endTime}"></span></p>
 <!--                                  <p>题目数量: <span th:text="${exames.singlenumber}"></span> &emsp;&emsp; 总分: <span th:text="${exames.singlenumber}*${exames.singlecore}"></span> &emsp;&emsp;</p>-->
-                                  <p class="beginTime">考试时长: <span th:text="${exames.testtime}"></span> 分钟</p>
+                                  <p class="beginTime">考试时长: <span th:text="${exames.during}"></span> 分钟</p>
                                   <p>
-                                      <a class="btn btn-default btn-lg btn-block beginExam" th:onclick="'javascript:StratTest(\''+${exames.eid}+'\');'">进入考试</a>
+                                      <a class="btn btn-default btn-lg btn-block beginExam" th:onclick="'javascript:StratTest(\''+${exames.id}+'\');'">进入考试</a>
                                   </p>
                               </div>
                           </div>
@@ -54,7 +54,7 @@
                async:false,
                contentType: 'application/json;charset=UTF-8',
                data: JSON.stringify({
-                   eid: eid
+                   id: eid
                }),
                success: function (data) {
                    datalist=data;
@@ -65,17 +65,17 @@
                var examdate="";
                var examtime="";
                $.ajax({
-                   url: '/findExamByEid',
+                   url: '/findExamById',
                    type: 'POST',
                    dataType: 'json',
                    async:false,
                    contentType: 'application/json;charset=UTF-8',
                    data: JSON.stringify({
-                       eid: eid
+                       id: eid
                    }),
-                   success: function (data) {
-                       examdate =data.examdate;
-                       examtime = data.examtime;
+                   success : function (data) {
+                       examdate = data.startTime;
+                       examtime = data.endTime;
                    },
                    error: function () {
                        alert("错误");
@@ -100,7 +100,7 @@
                if (currentdate >= examdate) {
                    if (currentdate <= examtime) {
                        if(confirm('将开始考试，是否继续?')){
-                           window.location.href="paper?eid="+eid;
+                           window.location.href="paper?examId="+eid;
                        }
                    }
                    else {

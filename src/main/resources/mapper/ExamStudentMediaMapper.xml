@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fengrui.dao.ExamStudentMediaDao">
+    <resultMap id="resultMap" type="com.fengrui.pojo.ExamStudentMedia">
+        <result column="user_id" property="userId" />
+        <result column="class_id" property="classId" />
+        <result column="exam_id" property="examId" />
+        <result column="exam_name" property="examName" />
+        <result column="total_score" property="totalScore" />
+    </resultMap>
+    <insert id="addExamStudent">
+        insert into exam_user_media(user_id, class_id, exam_id, exam_name, score, total_score, time)
+        value (#{userId}, #{classId}, #{examId}, #{examName}, #{score}, #{totalScore}, #{time});
+    </insert>
+    <select id="findByUserId" resultMap="resultMap">
+        select * from exam_user_media where user_id=#{userId};
+    </select>
+    <select id="findByTwoId" resultMap="resultMap">
+        select * from exam_user_media where exam_id=#{examId} and user_id=#{userId};
+    </select>
+    <select id="findAll" resultMap="resultMap">
+        select * from exam_user_media;
+    </select>
+    <select id="findByClassId" resultMap="resultMap">
+        select * from exam_user_media where class_id=#{classId};
+    </select>
+</mapper>

@@ -29,6 +29,8 @@ public class TeaUserController {
     ExamService examService;
     @Autowired
     ExamQuestionMediaService examQuestionMediaService;
+    @Autowired
+    ExamStudentMediaService examStudentMediaService;
     //查询所有学生信息
     @GetMapping("/StudentList")
     public String findUsers(HttpServletRequest request, Model model, @RequestParam(defaultValue = "1",value = "pageNum")Integer pageNum){
@@ -218,4 +220,21 @@ public class TeaUserController {
         model.addAttribute("exam",exam);
         return "teacher/paperDetails";
     }
+
+    @GetMapping("/findAllScore")
+    public String findAllScore(@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum,HttpServletRequest request,Model model){
+        PageHelper.startPage(pageNum,5);
+        //获取class id
+        Integer teaClassid = Integer.valueOf((String) request.getSession().getAttribute("TeaClassid"));
+        model.addAttribute("cs",classService.getClassById(teaClassid));
+        List<ExamStudentMedia> scores = examStudentMediaService.findByClassId(teaClassid);
+        for (ExamStudentMedia score : scores){
+            score.setUser(userService.getById(score.getUserId()));
+        }
+        PageInfo<ExamStudentMedia> studentexamPageInfo = new PageInfo<>(scores);
+        model.addAttribute("pageInfo",studentexamPageInfo);
+        model.addAttribute("score",scores);
+        return "teacher/AllScore";
+    }
+
 }

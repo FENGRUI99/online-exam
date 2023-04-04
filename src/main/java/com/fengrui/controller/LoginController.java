@@ -34,6 +34,10 @@ public class LoginController {
         }
         else {
             System.out.println("登陆成功");
+            servletRequest.getSession().setAttribute("truename",login.getRealName());
+            servletRequest.getSession().setAttribute("id", login.getId());
+            servletRequest.getSession().setAttribute("password", login.getPassword());
+            servletRequest.getSession().setAttribute("classid",login.getClassId());
             return "student/StuMan";
         }
     }

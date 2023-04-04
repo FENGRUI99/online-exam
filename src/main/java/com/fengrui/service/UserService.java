@@ -13,4 +13,6 @@ public interface UserService {
     Integer update(User user);
     Integer delete(Integer id);
     Integer deleteAll(Integer classId);
+    Integer updatePassword(User user);
+    List<User> getAll();
 }
