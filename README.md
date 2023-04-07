@@ -21,12 +21,11 @@
   ```shell
   git clone https://github.com/FENGRUI99/online-exam.git
   cd online-exam
-```
+	```
 
 - 2.初始化数据库
 
   新建exam数据库，密码和`online-exam/src/main/resources/application.yml`的`password: xxxxxx`保持一致，然后导入`oneline-exam/exam.sql`
 
 - 3.启动
-
   打开`online-exam`这个Maven项目，可以在IDE里启动或者执行`mvn install`生成jar包启动
